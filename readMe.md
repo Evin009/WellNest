@@ -34,16 +34,17 @@ By leveraging **machine learning, ranking algorithms, and user feedback loops**,
 
 ## 🧱 System Architecture  
 
-┌────────────┐      ┌────────────────┐      ┌──────────────────────┐      ┌────────────────────┐
-│  User Input │ ──▶ │ FastAPI Backend │ ──▶ │ ML Ranking Algorithm │ ──▶ │ PostgreSQL Storage │
-└────────────┘      └────────────────┘      └──────────────────────┘      └────────────────────┘
-                                            │
-                                            ▼
-                                ┌──────────────────────────────┐
-                                │  Feedback Loop & Retraining  │
-                                │     (ml_training.py)         │
-                                └──────────────────────────────┘
-
+User Input 
+   ↓
+FastAPI Backend 
+   ↓
+ML Ranking Algorithm 
+   ↓
+PostgreSQL Storage
+   ↓
+Feedback Loop 
+   ↓
+Model Retraining (ml_training.py)
 
 
 **Key Components**  
@@ -95,3 +96,20 @@ The **PostgreSQL schema** includes:
 ```bash
 git clone https://github.com/<your-username>/wellnest.git
 cd wellnest
+```
+
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Setup Environment
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/wellnest
+SECRET_KEY=your_secret_key
+```
+### 4. Initialize Database
+```bash
+psql -U postgres -f schema.pgsql
+python seed_data.py
+```
